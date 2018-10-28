@@ -1,5 +1,5 @@
 from func.login import *
-from func.loginTerminal import *
+from func.terminal_options import *
 import sys
 import platform
 import getpass

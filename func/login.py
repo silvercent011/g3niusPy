@@ -1,48 +1,23 @@
 from random import randint
+from func.cripto import *
 import os
 import platform
 import sys
 '''
-Genius(Lite) Cript + Login Backend 1.0 - GCLB
+Genius(Lite) Login Backend 1.0
 '''
 #Arquivos
 codigos_genius = './data/codigos.genius'
 users_genius = './data/users.genius'
 log_genius = './data/users.genius'
-def criptografaTexto(texto):
-    '''
-    Função recebe uma string e a retorna criptogradafa
-    '''
-    final = ''
-    e = 71
-    n = 1073
-    for x in texto:
-        codigoOrd = ord(x)
-        cripto = chr(codigoOrd**e%n)
-        final+=cripto
-    
-    return final
-
-def descriptografaTexto(texto):
-    '''
-    Função recebe uma string criptogradafa e retorna legível
-    '''
-    final = ''
-    d = 1079
-    n = 1073
-    for x in texto:
-        codigoOrd = ord(x)
-        cripto = chr(codigoOrd**d%n)
-        final+=cripto
-    
-    return final
 
 def carregaLogin(users):
     '''
     Carrega dados dos usuários do arquivo para os dicionários
     '''
     arquivo = open(users_genius,'r',encoding='utf-8')
-    for x in arquivo:
+    linhas = arquivo.readlines()
+    for x in linhas:
         info = descriptografaTexto(x)
         listaSuporte = []
         stringSuporte = ''
@@ -50,16 +25,14 @@ def carregaLogin(users):
             if (y == '*'):
                 listaSuporte.append(stringSuporte)
                 stringSuporte = ''
-            elif (y=='\n'):
-                login = listaSuporte[0]
-                senha = listaSuporte[1]
-                nomeCompleto = listaSuporte[2]
-                nomeExib = listaSuporte[3]
-                nivel = int(listaSuporte[4])
-                users[login] = (login,senha,nomeCompleto,nomeExib,nivel)
-                listaSuporte = []
             else:
-                stringSuporte+=y    
+                stringSuporte+=y   
+        login = listaSuporte[0]
+        senha = listaSuporte[1]
+        nomeCompleto = listaSuporte[2]
+        nomeExib = listaSuporte[3]
+        nivel = int(listaSuporte[4])
+        users[login] = (login,senha,nomeCompleto,nomeExib,nivel)
 
 def cadastraUsuario(login,senha,nome,verificador,chaves,usuarios):
     '''
@@ -93,34 +66,34 @@ def cadastraUsuario(login,senha,nome,verificador,chaves,usuarios):
                 nomeExib = listaNome[0] + ' ' + listaNome[-1]
             #Verificar a chave de acesso para saber o nível do usuário
             nivelFinal = 0
-            if  (chaves[verificador][1] == 1):
+            if  (chaves[verificador][1] == '1'):
                 nivelFinal = 1
-            elif(chaves[verificador][1] == 2):
+            elif(chaves[verificador][1] == '2'):
                 nivelFinal = 2
-            elif(chaves[verificador][1] == 3):
+            elif(chaves[verificador][1] == '3'):
                 nivelFinal = 3
-            elif(chaves[verificador][1] == 4):
+            elif(chaves[verificador][1] == '4'):
                 nivelFinal = 4
-            elif(chaves[verificador][1] == 5):
+            elif(chaves[verificador][1] == '5'):
                 nivelFinal = 5
-            elif(chaves[verificador][1] == 6):
+            elif(chaves[verificador][1] == '6'):
                 nivelFinal = 6
-            elif(chaves[verificador][1] == 7):
+            elif(chaves[verificador][1] == '7'):
                 nivelFinal = 7
-            elif(chaves[verificador][1] == 8):
+            elif(chaves[verificador][1] == '8'):
                 nivelFinal = 8
-            elif(chaves[verificador][1] == 9):
+            elif(chaves[verificador][1] == '9'):
                 nivelFinal = 9
-            elif(chaves[verificador][1] == 10):
+            elif(chaves[verificador][1] == '10'):
                 nivelFinal = 10
                 
             #Conversão explicita
             loginStr = str(login)
             nivelFinalStr = str(nivelFinal)
             #login*senha*nomeCompleto*nomeExibicao*niveldeacesso*
-            info = loginStr+ch+senha+ch+nome+ch+nomeExib+ch+nivelFinalStr+ch+'\n'
+            info = loginStr+ch+senha+ch+nome+ch+nomeExib+ch+nivelFinalStr+ch
             usuarios[login] = (login,senha,nome,nomeExib,nivelFinal)
-            infoCripto = criptografaTexto(info)
+            infoCripto = criptografaTexto(info) +'\n'
     
             arquivo = open(users_genius,'a',encoding='utf-8')
             arquivo.write(infoCripto)
@@ -135,7 +108,8 @@ def carregaCodigos(codigos):
     Carrega os códigos de cadastro para o dicionário específico
     '''
     arquivo = open(codigos_genius,'r',encoding='utf-8')
-    for x in arquivo:
+    linhas = arquivo.readlines()
+    for x in linhas:
         info = descriptografaTexto(x)
         listaSuporte = []
         stringSuporte = ''
@@ -143,15 +117,13 @@ def carregaCodigos(codigos):
             if (y == '*'):
                 listaSuporte.append(stringSuporte)
                 stringSuporte = ''
-            elif (y == '\n'):
-                chave = int(listaSuporte[0])
-                codigo1 = int(listaSuporte[1])
-                codigo2 = int(listaSuporte[2])
-                dataIn = (codigo1,codigo2)
-                codigos[chave] = dataIn
-                listaSuporte = []
             else:
                 stringSuporte += y
+        chave = listaSuporte[0]
+        codigo1 = listaSuporte[1]
+        codigo2 = listaSuporte[2]
+        dataIn = (codigo1,codigo2)
+        codigos[chave] = dataIn
             
     arquivo.close()
 
@@ -162,8 +134,8 @@ def excluiCodigo(codigo,dicionario):
     for x in dicionario:
         chave = str(dicionario[x][0])
         nivel = str(dicionario[x][1])
-        info = chave+ch+chave+ch+nivel+ch+'\n'
-        infoCripto = criptografaTexto(info)
+        info = chave+ch+chave+ch+nivel+ch
+        infoCripto = criptografaTexto(info) +'\n'
         arquivo.write(infoCripto)
     arquivo.close()
     dicionario.clear()
@@ -176,8 +148,8 @@ def geraCodigos(nivel,dicionario):
     arquivo = open(codigos_genius,'a',encoding='utf-8')
     codigo = randint(111111,999999)
     ch = '*'
-    info = str(codigo)+ch+str(codigo)+ch+str(nivel)+ch+'\n'
-    infoCripto = criptografaTexto(info)
+    info = str(codigo)+ch+str(codigo)+ch+str(nivel)+ch
+    infoCripto = criptografaTexto(info) +'\n'
     arquivo.write(infoCripto)
     arquivo.close()
     data = (codigo,nivel)
