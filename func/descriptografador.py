@@ -1,15 +1,17 @@
 
-arquivo = open('./data/users.genius','r',encoding='utf-8')
+arquivo = open('./data/log.genius','r',encoding='utf-8')
 
 d = 1079
 n = 1073
-for texto in arquivo:
+linhas = arquivo.readlines()
+for x in linhas:
+    texto = x.split('*')
     final = ''
-    print('----------------------------------------------')
-    for x in texto:
-        codigoOrd = ord(x)
-        cripto = chr(codigoOrd**d%n)
-        final+=cripto
+    for y in texto:
+        if y != '\n':
+            codigoOrd = int(y)
+            cripto = chr(codigoOrd**d%n)
+            final+=cripto
     print(final)
     print('----------------------------------------------')
 

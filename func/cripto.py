@@ -1,3 +1,5 @@
+#Sidney Alex
+##Criptografia Genius Lite
 from random import randint
 import os
 import platform

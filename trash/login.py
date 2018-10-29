@@ -23,7 +23,7 @@ def criptografaInfo(texto):
     return depois
 
 def descriptografaInfo(users):
-    datab = open('users.genius','r',encoding='utf-8')
+   # datab = open('users.genius','r',encoding='utf-8')
     d = 1079
     n = 1073
     cr = '*'

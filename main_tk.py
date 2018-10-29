@@ -1,7 +1,20 @@
+#Sidney Alex
+'''
+Genius (Lite) Tkinter Main Interface - GTMI
+'''
+#Funções
 from func.login import *
+from func.log import *
+#Janelas
+from menus.inicio_level3 import *
+from menus.inicio_level4 import *
 from menus.inicio_level6 import *
 from menus.cadastra_usuario import *
+#TkInter
 from tkinter import *
+from tkinter import font
+from tkinter import ttk
+#Sistema Operacional
 import sys
 import platform
 import getpass
@@ -19,18 +32,23 @@ def btEntrar():
     				print('Usuario Nivel',logins[loginEntrada][4])
     				login.delete(0,END)
     				senha.delete(0,END)
+    				usuario = logins[loginEntrada][3]
+    				nivel = logins[loginEntrada][4]
     				if (int(logins[loginEntrada][4]) == 1):
     					pass
     				elif (int(logins[loginEntrada][4]) == 2):
     					pass
     				elif (int(logins[loginEntrada][4]) == 3):
-    					pass
+    					colocaLog(loginEntrada,usuario,nivel,'LOGIN NO SISTEMA')
+    					menuLevel3(loginEntrada,usuario,nivel)
     				elif (int(logins[loginEntrada][4]) == 4):
-    					pass
+    					colocaLog(loginEntrada,usuario,nivel,'LOGIN NO SISTEMA')
+    					menuLevel4(loginEntrada,usuario,nivel)
     				elif (int(logins[loginEntrada][4]) == 5):
     					pass
     				elif (int(logins[loginEntrada][4]) == 6):
-    					menuLevel6(logins[loginEntrada][3],logins[loginEntrada][4])
+    					colocaLog(loginEntrada,usuario,nivel,'LOGIN NO SISTEMA')
+    					menuLevel6(loginEntrada,usuario,nivel)
     				elif (int(logins[loginEntrada][4]) == 7):
     					pass
     				elif (int(logins[loginEntrada][4]) == 8):
@@ -52,14 +70,16 @@ def btPrimAcesso():
 def btEsqueceu():
 	messagebox.showinfo('Ops!','Função não implementada!')
 
-def btSair():
+def btSairInicio():
 	exit()
 #Inicio do programa
 logins = {}
 codigos = {}
+log = {}
 carregaLogin(logins)
 carregaCodigos(codigos)
-
+carregaLog(log)
+print(log)
 janela = Tk()
 loginForms = Frame(janela)
 loginForms.pack(side=RIGHT,fill=Y)
@@ -78,7 +98,7 @@ senha =      ttk.Entry(loginForms, show='*')
 entrar =     ttk.Button(loginForms, width=30, text='Entrar',command=btEntrar)
 primAcesso = ttk.Button(loginForms, width=30, text='Primeiro Acesso?',command=btPrimAcesso)
 esqSenha =   ttk.Button(loginForms, width=30, text='Esqueceu sua senha?',command=btEsqueceu)
-sair =   ttk.Button(loginForms, width=30, text='Sair',command=btSair)
+sair =   ttk.Button(loginForms, width=30, text='Sair',command=btSairInicio)
 
 #loginForms['background'] = 'red'
 ladoInfo['bg'] = 'green'
