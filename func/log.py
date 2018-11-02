@@ -41,6 +41,3 @@ def carregaLog(dicionario):
         tupla = (listaSuporte[0],listaSuporte[1],listaSuporte[2],listaSuporte[3],listaSuporte[4],listaSuporte[5])
         dicionario[cont] = tupla                
     arquivo.close()
-
-print(dt_at_frt)
-print(hora_atual)

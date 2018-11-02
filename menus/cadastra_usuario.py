@@ -13,7 +13,7 @@ def cadastraUsuarios(chaves,usuarios):
     '''
     Menu para cadastro
     '''
-    frameGeral = Tk()
+    frameGeral = Toplevel()
 
     label1 = ttk.Label(frameGeral, text='Nome completo')
     label1.grid(row=0,column=0)

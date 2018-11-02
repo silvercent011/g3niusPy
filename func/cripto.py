@@ -23,8 +23,8 @@ def carregaChave(chave):
                 else:
                     chaves.append(leituraAtual)
                     leituraAtual = ''
-        return chaves
         arquivo.close()
+        return chaves
     elif (chave == 2) :
         arquivo = open(criptoPrivate,'r',encoding='utf-8')
         leituraAtual = ''
@@ -36,8 +36,8 @@ def carregaChave(chave):
                 else:
                     chaves.append(leituraAtual)
                     leituraAtual = ''
-        return chaves
         arquivo.close()
+        return chaves
 
 def criptografaTexto(texto):
     '''

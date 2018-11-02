@@ -1,5 +1,6 @@
 from func.login import *
 from func.terminal_options import *
+from func.dataIn import *
 import sys
 import platform
 import getpass
@@ -75,14 +76,18 @@ def menuLevels(codigo):
     if (codigo == 6):
         exibeLinha()
         print('1 - Cadastrar Alunos')
-        print('2 - Gerar códigos')
-        print('3 - Sair')
+        print('2 - Pesquisar Alunos')
+        print('3 - Material Impresso')
+        print('4 - Gerar códigos')
+        print('5 - Gerenciar Usuários')
+        print('6 - Log de informações')
+        print('7 - Sair')
         escolha = input()
         exibeLinha()
         escolhaInt = int(escolha)
         if (escolhaInt == 1):
             pass
-        elif (escolhaInt == 2):
+        elif (escolhaInt == 4):
             nivel = int(input('Escolha o nível do usuário a ser cadastrado'))
             codigo = geraCodigos(nivel,codigos)
             print('ANOTE O CÓDIGO COM ATENÇÃO:', codigo)
