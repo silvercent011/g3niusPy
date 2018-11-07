@@ -10,12 +10,13 @@ from menus.cadastra_aluno import *
 from tkinter import ttk
 from tkinter import font
 from tkinter import *
+from PIL import ImageTk, Image
 #Sistema
 import sys
 import platform
 import getpass
 
-def menuLevel(login,usuario,level,dictAlunos):
+def menuLevel(login,usuario,level,dictAlunos,janelaPai):
     '''
     Menu para usuários de diferentes níveis
     '''
@@ -30,10 +31,8 @@ def menuLevel(login,usuario,level,dictAlunos):
     s = ttk.Style()
     s.configure('branco.TFrame',background='white')
     #Frame
-    janela = Toplevel()
-    janela.title('Genius (Lite) ' + ' - ' + usuario + ' - ' + info)
-    janela.resizable(FALSE,FALSE)
-    janela['bg'] = 'white'
+    janela = ttk.Frame(janelaPai)
+    janela.pack()
     level6 = ttk.Frame(janela)
     level6.grid(row=0,column=0)
     level6['style'] = 'branco.TFrame'
@@ -43,8 +42,10 @@ def menuLevel(login,usuario,level,dictAlunos):
     fonteTopo2 = font.Font(family='Segoe Ui', size=14, weight='normal')
     fonteTopo3 = font.Font(family='Segoe Ui', size=12, weight='normal')
     fonteTopo4 = font.Font(family='Segoe Ui', size=24, weight='normal')
-    imagemLogo = PhotoImage(file='./icons/logoSmall2.png')
+
+    imagemLogo = ImageTk.PhotoImage(Image.open('./icons/logoSmall2.png'))
     logo = Label(level6,text='GENIUS',image=imagemLogo)
+    logo.image = imagemLogo
     logo.grid(row=0, column=0,columnspan=2,rowspan=2,sticky=W)
     logo['bg'] = 'white'
 
@@ -55,54 +56,67 @@ def menuLevel(login,usuario,level,dictAlunos):
     labelLevel.grid   (row=1,column=3,columnspan=2,sticky=E+N)
     labelLevel['bg'] = 'white'
     #Cadastrar Alunos
-    imagemCadastro = PhotoImage(file='./icons/account80.png')
-    cadastra_aluno = ttk.Button(level6,width=largura,compound=TOP,text='Cadastrar Alunos',image=imagemCadastro,command=partial(cadastraAluno,login,level,usuario,dictAlunos))
+    imagemCadastro = ImageTk.PhotoImage(Image.open('./icons/account80.png'))
+    cadastra_aluno = ttk.Button(level6,width=largura,compound=TOP,text='Cadastrar Alunos',image=imagemCadastro,command=partial(cadastraAluno,login,level,usuario,dictAlunos,janelaPai,janela,btVoltarCadastroA))
+    cadastra_aluno.image = imagemCadastro
+    #cadastra_aluno.bind("<Button-1>",)
     cadastra_aluno.grid(row=4,column=0)
     #Pesquisar Alunos
-    imagemPesquisa = PhotoImage(file='./icons/search80.png')
+    imagemPesquisa = ImageTk.PhotoImage(Image.open('./icons/search80.png'))
     pesquisa_aluno = ttk.Button(level6,width=largura,compound=TOP,text='Pesquisar Alunos',image=imagemPesquisa)
+    pesquisa_aluno.image = imagemPesquisa
     pesquisa_aluno.grid(row=4,column=1)
     #Material Impresso
-    imagemImpresso = PhotoImage(file='./icons/exam80.png')
+    imagemImpresso = ImageTk.PhotoImage(Image.open('./icons/exam80.png'))
     material_impresso = ttk.Button(level6,width=largura,compound=TOP,text='Material Impresso',image=imagemImpresso, command=partial(materialImpresso,login,usuario,level))
+    material_impresso.image = imagemImpresso
     material_impresso.grid(row=4,column=2)
     #Gerar Códigos/Lançar Notas/Gerenciar Horários
     if str(level) == '3':
-        imagemNotas = PhotoImage(file='./icons/ReportCard80.png')
+        imagemNotas = ImageTk.PhotoImage(Image.open('./icons/ReportCard80.png'))
         lancar_notas = ttk.Button(level6,width=largura,compound=TOP,text='Lançar Notas',image=imagemNotas,command=partial(lancaNotas,login,usuario,level))
+        lancar_notas.image = imagemNotas
         lancar_notas.grid(row=4,column=3,sticky=W)
     elif str(level) == '4':
-        imagemHorarios = PhotoImage(file='./icons/WeekView80.png')
+        imagemHorarios = ImageTk.PhotoImage(Image.open('./icons/WeekView80.png'))
         gerenc_horarios = ttk.Button(level6,width=largura,compound=TOP,text='Gerenciar Horários',image=imagemHorarios,command=partial(gerenciarHorarios,login,usuario,level))
+        gerenc_horarios.image = imagemHorarios
         gerenc_horarios.grid(row=4,column=3,sticky=W)
     elif str(level) == '6':
-        imagemCodigos = PhotoImage(file='./icons/newDocument80.png')
+        imagemCodigos = ImageTk.PhotoImage(Image.open('./icons/newDocument80.png'))
         gerar_codigo = ttk.Button(level6,width=largura,compound=TOP,text='Gerar Cógidos',image=imagemCodigos)
+        gerar_codigo.image = imagemCodigos
         gerar_codigo.grid(row=4,column=3,sticky=W)
     #Gerenciar usuários/Frequencia/Avisos
     if str(level) == '3':
-        imagemFrequencia = PhotoImage(file='./icons/datasheetfilled80.png')
+        imagemFrequencia = ImageTk.PhotoImage(Image.open('./icons/datasheetfilled80.png'))
         frequencia = ttk.Button(level6,width=largura,compound=TOP,text='Frequência',image=imagemFrequencia,command=partial(frequenciaAlunos,login,usuario,level))
+        frequencia.image = imagemFrequencia
         frequencia.grid(row=5,column=0)
     elif str(level) == '4':
-        imagemAvisos = PhotoImage(file='./icons/Alert80.png')
+        imagemAvisos = ImageTk.PhotoImage(Image.open('./icons/Alert80.png'))
         avisos = ttk.Button(level6,width=largura,compound=TOP,text='Avisos',image=imagemAvisos,command=partial(avisosGer,login,usuario,level))
+        avisos.image = imagemAvisos
         avisos.grid(row=5,column=0)
     elif str(level) == '6':
-        imagemUsuarios = PhotoImage(file='./icons/gruposDeUsuários80.png')
+        imagemUsuarios = ImageTk.PhotoImage(Image.open('./icons/gruposDeUsuários80.png'))
         exibir_usuarios = ttk.Button(level6,width=largura,compound=TOP,text='Gerenciar Usuários',image=imagemUsuarios,command=partial(gerUsers,login,usuario,level))
+        exibir_usuarios.image = imagemUsuarios
         exibir_usuarios.grid(row=5,column=0)
     #Log de Informações
-    imagemLog = PhotoImage(file='./icons/overview80.png')
+    imagemLog = ImageTk.PhotoImage(Image.open('./icons/overview80.png'))
     exibir_log = ttk.Button(level6,width=largura,compound=TOP,text='Log de Informações',image=imagemLog)
+    exibir_log.image = imagemLog
     exibir_log.grid(row=5,column=1)
     #Configurações
-    imagemConfig = PhotoImage(file='./icons/Automation80.png')
+    imagemConfig = ImageTk.PhotoImage(Image.open('./icons/Automation80.png'))
     config = ttk.Button(level6,width=largura,compound=TOP,text='Configurações',image=imagemConfig)
+    config.image = imagemConfig
     config.grid(row=5,column=2)
     #Sair
-    imagemSair= PhotoImage(file='./icons/cancel80.png')
-    sair = ttk.Button(level6,width=largura,compound=TOP,text='Sair',image=imagemSair,command=partial(btSair,login,usuario,level))
+    imagemSair= ImageTk.PhotoImage(Image.open('./icons/cancel80.png'))
+    sair = ttk.Button(level6,width=largura,compound=TOP,text='Sair',image=imagemSair,command=partial(btSair,login,usuario,level,janelaPai,janela))
+    sair.image = imagemSair
     sair.grid(row=5,column=3,sticky=W)
 
     #Rodapé
@@ -123,8 +137,10 @@ def menuLevel(login,usuario,level,dictAlunos):
     version_lb['bg'] = 'white'
     data['bg']       = 'white'
 
+    janelaPai.title('Genius (Lite) ' + ' - ' + usuario + ' - ' + info)
+    janelaPai.resizable(FALSE,FALSE)
+    janelaPai['bg'] = 'white'
 
-    #level6.geometry('400x400')
-    #janela.geometry('870x400')
-    janela.mainloop()
-#menuLevel(000000000000,'TESTE',6)
+def btVoltarCadastroA(login,usuario,level,dictAlunos,janelaPai,frameAtual):
+    frameAtual.destroy()
+    menuLevel(login,usuario,level,dictAlunos,janelaPai)

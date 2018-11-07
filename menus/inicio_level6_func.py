@@ -18,8 +18,9 @@ import getpass
 def ops():
     messagebox.showerror('Ops!','A função ainda não foi implementada')
 
-#Botão Sair
-def btSair(loginEntrada,usuario,nivel):
+#Botão Sair  
+
+def btSair(loginEntrada,usuario,nivel,janelaPai,frame):
 	
     colocaLog(loginEntrada,usuario,nivel,'SAIU DO SISTEMA')
     exit()

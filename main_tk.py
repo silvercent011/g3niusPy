@@ -14,6 +14,7 @@ from tkinter import *
 from tkinter import font
 from tkinter import ttk
 from tkinter import messagebox
+from PIL import ImageTk, Image
 #Sistema Operacional
 import sys
 import platform
@@ -23,6 +24,10 @@ def btEntrar():
 	
     if (login.get() == '' or senha.get() == ''):
     	messagebox.showerror('Ops!','Alguns campos de login estão vazios')
+    elif (len(login.get()) < 11):
+    	messagebox.showerror('Ops!', 'Seu CPF está completo?')
+    elif (len(login.get()) > 11):
+        messagebox.showerror('Ops!', 'Seu CPF tem mais de 11 números! Ele é exclusivo bença?')
     elif(login.get().isnumeric()):
     	loginEntrada = login.get()
     	senhaEntrada = senha.get()
@@ -33,8 +38,8 @@ def btEntrar():
     				usuario = logins[loginEntrada][3]
     				nivel = logins[loginEntrada][4]
     				colocaLog(loginEntrada,usuario,nivel,'LOGIN NO SISTEMA')
-    				janela.destroy()
-    				menuLevel(loginEntrada,usuario,nivel,alunos)
+    				frameGeral.destroy()
+    				menuLevel(loginEntrada,usuario,nivel,alunos,janela)
     			else:
     				messagebox.showerror('Ops!','A senha está incorreta')
     	else:
@@ -73,7 +78,8 @@ espacamento2 = 20
 
 janela = Tk()
 janela.resizable(FALSE,FALSE)
-
+frameGeral = ttk.Frame(janela)
+frameGeral.grid(row=0, column=0)
 #Fontes e estilos
 fonteTo5 = font.Font(family='Segoe Ui', size=18, weight='bold')
 fonteTopo2 = font.Font(family='Segoe Ui', size=14, weight='normal')
@@ -86,10 +92,10 @@ s.configure('branco.TFrame',background='white')
 r = ttk.Style()
 r.configure('branco.TLabel',background='white')
 
-loginForms = ttk.Frame(janela)
+loginForms = ttk.Frame(frameGeral)
 loginForms.pack(side=RIGHT,fill=Y)
 loginForms['style'] = 'branco.TFrame'
-ladoInfo = ttk.Frame(janela)
+ladoInfo = ttk.Frame(frameGeral)
 ladoInfo.pack(side=LEFT)
 ladoInfo['style'] = 'branco.TFrame'
 
@@ -129,13 +135,13 @@ sair =   ttk.Button(loginForms, width=largura, text='Sair',command=btSairInicio)
 sair.grid(row=11,column=11,sticky=W,ipady=altura)
 
 #ÁREA DE TESTES
-level3 = ttk.Button(loginForms, width=largura, text='Level3', command=partial(menuLevel,'000000000000','TESTE',3,alunos))
+level3 = ttk.Button(loginForms, width=largura, text='Level3', command=partial(menuLevel,'000000000000','TESTE',3,alunos,janela))
 level3.grid(row=14,column=10,sticky=W)
 
-level4 = ttk.Button(loginForms, width=largura, text='Level4', command=partial(menuLevel,'000000000000','TESTE',4,alunos))
+level4 = ttk.Button(loginForms, width=largura, text='Level4', command=partial(menuLevel,'000000000000','TESTE',4,alunos,janela))
 level4.grid(row=15,column=10,sticky=W)
 
-level6 = ttk.Button(loginForms, width=largura, text='Level6', command=partial(menuLevel,'000000000000','TESTE',6,alunos))
+level6 = ttk.Button(loginForms, width=largura, text='Level6', command=partial(menuLevel,'000000000000','TESTE',6,alunos,janela))
 level6.grid(row=16,column=10,sticky=W)
 
 

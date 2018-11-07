@@ -6,7 +6,7 @@ import platform
 import sys
 
 '''
-Genius(Lite) Cripto 2.0
+Genius(Lite) Security System 2.5
 '''
 
 criptoPublic = './data/chavePublica.txt'
