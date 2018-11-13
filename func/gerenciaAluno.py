@@ -1,5 +1,6 @@
 #Sidney Alex
 #Genius Lite
+from tkinter import *
 from datetime import *
 from func.cripto import *
 import os
@@ -28,3 +29,30 @@ def carregaAlunosArquivo(arquivo,dictAlunos):
         tupla = (itens[1],itens[2],itens[3],itens[4],itens[5],itens[6])
         dictAlunos[itens[0]] = tupla
     arquivo.close()
+
+def carregaAlunosBox(widget,dictAlunos):
+	cont=0
+	widget.insert('', '-1', 'alunos', text='Lista de Alunos Cadastrados')
+	for x in dictAlunos:
+		item = x + ' - ' + str(dictAlunos[x][2]) + ' - ' + str(dictAlunos[x][1])
+		widget.insert('alunos','end',text=dictAlunos[x][1])
+		print(x + '//' + str(dictAlunos[x]))
+		cont+=1
+
+def organizaAlunosNome(widget,dictAlunos):
+    pass
+
+def organizaAlunosTurma(widget,dictAlunos,turma):
+    pass
+
+def organizaAlunosTurno(widget,dictAlunos,turno):
+    pass
+
+def organizaAlunosAno(widget,dictAlunos,ano):
+    pass
+
+def organizaAlunosStatus(widget,dictAlunos,status):
+    '''
+    Situação, Ativo ou Inativo
+    '''
+    pass

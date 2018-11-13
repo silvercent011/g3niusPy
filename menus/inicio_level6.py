@@ -6,6 +6,8 @@ from func.log import *
 from datetime import *
 from menus.inicio_level6_func import *
 from menus.cadastra_aluno import *
+from menus.gerar_codigos import *
+from menus.pesquisa_exibir_aluno import *
 #TkInter
 from tkinter import ttk
 from tkinter import font
@@ -15,7 +17,7 @@ from PIL import ImageTk, Image
 import sys
 import platform
 import getpass
-
+arqAlunos = './data/database.genius'
 def menuLevel(login,usuario,level,dictAlunos,janelaPai):
     '''
     Menu para usuários de diferentes níveis
@@ -59,11 +61,10 @@ def menuLevel(login,usuario,level,dictAlunos,janelaPai):
     imagemCadastro = ImageTk.PhotoImage(Image.open('./icons/account80.png'))
     cadastra_aluno = ttk.Button(level6,width=largura,compound=TOP,text='Cadastrar Alunos',image=imagemCadastro,command=partial(cadastraAluno,login,level,usuario,dictAlunos,janelaPai,janela,btVoltarCadastroA))
     cadastra_aluno.image = imagemCadastro
-    #cadastra_aluno.bind("<Button-1>",)
     cadastra_aluno.grid(row=4,column=0)
     #Pesquisar Alunos
     imagemPesquisa = ImageTk.PhotoImage(Image.open('./icons/search80.png'))
-    pesquisa_aluno = ttk.Button(level6,width=largura,compound=TOP,text='Pesquisar Alunos',image=imagemPesquisa)
+    pesquisa_aluno = ttk.Button(level6,width=largura,compound=TOP,text='Pesquisar Alunos',image=imagemPesquisa,command=partial(pesquisaAluno,login,level,usuario,dictAlunos,janelaPai,janela,btVoltarCadastroA))
     pesquisa_aluno.image = imagemPesquisa
     pesquisa_aluno.grid(row=4,column=1)
     #Material Impresso
@@ -84,7 +85,7 @@ def menuLevel(login,usuario,level,dictAlunos,janelaPai):
         gerenc_horarios.grid(row=4,column=3,sticky=W)
     elif str(level) == '6':
         imagemCodigos = ImageTk.PhotoImage(Image.open('./icons/newDocument80.png'))
-        gerar_codigo = ttk.Button(level6,width=largura,compound=TOP,text='Gerar Cógidos',image=imagemCodigos)
+        gerar_codigo = ttk.Button(level6,width=largura,compound=TOP,text='Gerar Cógidos',image=imagemCodigos,command=partial(gerarCodigos,login,level,usuario,janelaPai,janela,btVoltarCadastroB))
         gerar_codigo.image = imagemCodigos
         gerar_codigo.grid(row=4,column=3,sticky=W)
     #Gerenciar usuários/Frequencia/Avisos
@@ -143,4 +144,11 @@ def menuLevel(login,usuario,level,dictAlunos,janelaPai):
 
 def btVoltarCadastroA(login,usuario,level,dictAlunos,janelaPai,frameAtual):
     frameAtual.destroy()
+    menuLevel(login,usuario,level,dictAlunos,janelaPai)
+
+def btVoltarCadastroB(login,usuario,level,janelaPai,frameAtual):
+    frameAtual.destroy()
+    arqAlunos = './data/database.genius'
+    dictAlunos = {}
+    carregaAlunosArquivo(arqAlunos,dictAlunos)
     menuLevel(login,usuario,level,dictAlunos,janelaPai)

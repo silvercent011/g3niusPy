@@ -1,4 +1,4 @@
-from cripto import *
+from func.cripto import *
 '''
 Genius (Lite) - Backend Input Data
 - Cadastro de Alunos

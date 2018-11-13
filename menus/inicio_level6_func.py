@@ -5,14 +5,10 @@ from func.login import *
 from func.log import *
 from datetime import *
 #TkInter
-from tkinter import ttk
-from tkinter import font
-from tkinter import messagebox
 from tkinter import *
+from tkinter import ttk, font, messagebox
 #Sistema
-import sys
-import platform
-import getpass
+import sys, platform, getpass
 
 #Funçãonãoimplmentada
 def ops():

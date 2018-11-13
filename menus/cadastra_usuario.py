@@ -1,8 +1,8 @@
 #TkInter
-from tkinter import ttk
 from func.login import *
 from tkinter import *
-from tkinter import messagebox
+from tkinter import font, ttk, messagebox
+from PIL import ImageTk, Image
 #Funcional
 from functools import partial
 #Sistema
@@ -13,46 +13,108 @@ def cadastraUsuarios(chaves,usuarios):
     '''
     Menu para cadastro
     '''
-    frameGeral = Toplevel()
+    version = 'Genius (LITE) - 7.0.1'
+    altura       = 10
+    largura      = 20
+    largura2     = 62
+    largura3	 = 17
+    espacamento1 = 50
+    espacamento2 = 20
 
-    label1 = ttk.Label(frameGeral, text='Nome completo')
-    label1.grid(row=0,column=0)
-    nomeCompleto = ttk.Entry(frameGeral)
-    nomeCompleto.grid(row=1,column=0)
+    janela = Toplevel()
+    janela.resizable(FALSE,FALSE)
 
-    label2 = ttk.Label(frameGeral, text='CPF (apenas números)')
-    label2.grid(row=2,column=0)
-    cpf = ttk.Entry(frameGeral)
-    cpf.grid(row=3,column=0)
+    r = ttk.Style()
+    r.configure('branco.TFrame',background='white')
 
-    label3 = ttk.Label(frameGeral, text='Senha')
-    label3.grid(row=4,column=0)
-    senha = ttk.Entry(frameGeral,show='*')
-    senha.grid(row=5, column=0)
+    s = ttk.Style()
+    s.configure('branco.TLabel',background='white')
+    
+    frameGeral = ttk.Frame(janela)
+    frameGeral.grid(row=0,column=0)
+    frameGeral['style'] = 'branco.TFrame'
+    frameGeral['padding'] = (espacamento1,espacamento2)
 
-    label4 = ttk.Label(frameGeral, text='Confirmar Senha')
-    label4.grid(row=6,column=0)
-    senhaC = ttk.Entry(frameGeral,show='*')
-    senhaC.grid(row=7, column=0)
+    #Fontes e estilos
+    fonteTo5 = font.Font(family='Segoe Ui', size=18, weight='bold')
+    fonteTopo2 = font.Font(family='Segoe Ui', size=14, weight='normal')
+    fonteTopo3 = font.Font(family='Segoe Ui', size=12, weight='normal')
+    fonteTopo4 = font.Font(family='Segoe Ui', size=24, weight='bold')
+    fonteTopo5 = font.Font(family='Segoe Ui', size=35, weight='bold')
+    fonteTopo6 = font.Font(family='Segoe Ui', size=14, weight='bold')
 
-    label5 = ttk.Label(frameGeral)
-    label5.grid(row=8,column=0)
-    label6 = ttk.Label(frameGeral,text=' ')
-    label6.grid(row=9,column=0)
+    label00 = ttk.Label(frameGeral,text='CADASTRAR USUÁRIOS',font=fonteTopo4)
+    label00['style'] = 'branco.TLabel'
+    label00.grid(row=0,column=0,columnspan=6,sticky=W)
 
-    label7 = ttk.Label(frameGeral,text='Codigo Verificador')
-    label7.grid(row=10, column=0)
+    imagemUser = ImageTk.PhotoImage(Image.open('./icons/AddUserMale80px.png'))
+    label0 = ttk.Label(frameGeral,text='',image=imagemUser)
+    label0.image = imagemUser
+    label0['style'] = 'branco.TLabel'
+    label0.grid(row=0,column=7,sticky=E)
 
-    codigo = ttk.Entry(frameGeral)
-    codigo.grid(row=11,column=0)
+    label1 = ttk.Label(frameGeral, text='NOME COMPLETO',font=fonteTopo3)
+    label1.grid(row=1,column=0,sticky=W)
+    label1['style'] = 'branco.TLabel'
+    nomeCompleto = ttk.Entry(frameGeral,font=fonteTopo3)
+    nomeCompleto.grid(row=2,column=0,columnspan=10,sticky=W+E)
 
+    label2 = ttk.Label(frameGeral, text='CPF (apenas números)',font=fonteTopo3)
+    label2.grid(row=3,column=0,sticky=W)
+    label2['style'] = 'branco.TLabel'
+    cpf = ttk.Entry(frameGeral,font=fonteTopo3)
+    cpf.grid(row=4,column=0,sticky=W+E)
 
-    enviar = ttk.Button(frameGeral, width=30, text='Cadastrar',command=partial(ponte,nomeCompleto,cpf,senha,senhaC,codigo,chaves,usuarios))
-    enviar.grid(row=13,column=0)
+    label3 = ttk.Label(frameGeral, text='SENHA',font=fonteTopo3)
+    label3.grid(row=6,column=0,sticky=W)
+    label3['style'] = 'branco.TLabel'
+    senha = ttk.Entry(frameGeral,show='*',font=fonteTopo3)
+    senha.grid(row=7, column=0,columnspan=6,sticky=W+E)
 
-    frameGeral.geometry('850x400')
-    frameGeral.title('Cadastrar usuários')
-    frameGeral.mainloop()
+    labelSuporte0 = ttk.Label(frameGeral,text='')
+    labelSuporte0.grid(row=6,column=6)
+    labelSuporte0['style'] = 'branco.TLabel'
+
+    label4 = ttk.Label(frameGeral, text='CONFIRMAR SENHA',font=fonteTopo3)
+    label4.grid(row=6,column=7,sticky=W)
+    label4['style'] = 'branco.TLabel'
+    senhaC = ttk.Entry(frameGeral,show='*',font=fonteTopo3)
+    senhaC.grid(row=7, column=7,sticky=W+E)
+
+    labelSuporte1 = ttk.Label(frameGeral,text='')
+    labelSuporte1.grid(row=9,column=0)
+    labelSuporte1['style'] = 'branco.TLabel'
+
+    labelSuporte2 = ttk.Label(frameGeral,text='')
+    labelSuporte2.grid(row=10,column=0)
+    labelSuporte2['style'] = 'branco.TLabel'
+
+    label7 = ttk.Label(frameGeral,text='Codigo Verificador',font=fonteTopo3)
+    label7.grid(row=12, column=0,sticky=W)
+    label7['style'] = 'branco.TLabel'
+    codigo = ttk.Entry(frameGeral,font=fonteTopo3)
+    codigo.grid(row=13,column=0,columnspan=6,sticky=W+E)
+
+    labelSuporte3 = ttk.Label(frameGeral,text='')
+    labelSuporte3.grid(row=14,column=0)
+    labelSuporte3['style'] = 'branco.TLabel'
+
+    imagemEnviar = ImageTk.PhotoImage(Image.open('./icons/30/Approval30px.png'))
+    enviar = ttk.Button(frameGeral, text='Cadastrar',compound=TOP,image=imagemEnviar,command=partial(ponte,nomeCompleto,cpf,senha,senhaC,codigo,chaves,usuarios))
+    enviar.image = imagemEnviar
+    enviar.grid(row=15,column=0,columnspan=6,sticky=W+E)
+
+    imagemVoltar = ImageTk.PhotoImage(Image.open('./icons/30/Cancel30px.png'))
+    voltar = ttk.Button(frameGeral, text='Voltar',compound=TOP,image=imagemVoltar,command=partial(fecharJanela,janela))
+    voltar.image = imagemVoltar
+    voltar.grid(row=15,column=7,sticky=W+E)
+
+    janela['background'] = 'white'
+    janela.title('Cadastrar usuários')
+    janela.mainloop()
+
+def fecharJanela(janela):
+    janela.destroy()
 
 def ponte(nomeCompleto,cpf,senha,senhaC,codigo,chaves,usuarios):
     nome2 = nomeCompleto.get()

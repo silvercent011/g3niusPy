@@ -146,7 +146,7 @@ def geraCodigos(nivel,dicionario):
     Cadastra códigos em arquivo, Nível 6+
     '''
     arquivo = open(codigos_genius,'a',encoding='utf-8')
-    codigo = randint(111111,999999)
+    codigo = str(randint(111111,999999))
     ch = '*'
     info = str(codigo)+ch+str(codigo)+ch+str(nivel)+ch
     infoCripto = criptografaTexto(info) +'\n'
