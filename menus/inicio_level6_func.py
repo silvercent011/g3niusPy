@@ -1,8 +1,8 @@
 #Funcional
 from functools import partial
 #Funções
-from func.login import *
 from func.log import *
+from func.login import *
 from datetime import *
 #TkInter
 from tkinter import *
@@ -19,6 +19,7 @@ def ops():
 def btSair(loginEntrada,usuario,nivel,janelaPai,frame):
 	
     colocaLog(loginEntrada,usuario,nivel,'SAIU DO SISTEMA')
+    frame.destroy()
     exit()
 
 def materialImpresso(loginEntrada,usuario,nivel):

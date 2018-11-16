@@ -31,13 +31,47 @@ def carregaAlunosArquivo(arquivo,dictAlunos):
     arquivo.close()
 
 def carregaAlunosBox(widget,dictAlunos):
-	cont=0
-	widget.insert('', '-1', 'alunos', text='Lista de Alunos Cadastrados')
-	for x in dictAlunos:
-		item = x + ' - ' + str(dictAlunos[x][2]) + ' - ' + str(dictAlunos[x][1])
-		widget.insert('alunos','end',text=dictAlunos[x][1])
-		print(x + '//' + str(dictAlunos[x]))
-		cont+=1
+    '''
+    Carregaa alunos no widget dado como parâmetro
+    '''
+    cont=0
+    for x in dictAlunos:
+    	item = x + ' - ' + str(dictAlunos[x][2]) + ' - ' + str(dictAlunos[x][3]) + ' - ' + str(dictAlunos[x][1])
+    	widget.insert(END,item)
+    	cont+=1
+    
+
+def salvarModificacoesAlunos(codigo,nome,turma,turno,ano,cpf,dictAlunos):
+    ch = '*'
+    valor = (codigo,nome,turma,turno,ano,cpf)
+    dictAlunos.update(codigo = valor)
+
+    arquivo = open(arqAlunos,'w',encoding='utf-8')
+    for w in dictAlunos:
+        x = dictAlunos[w]
+        info = str(x[0]) + ch + str(x[0]) + ch + x[1] + ch + x[2] + ch + x[3] + ch + x[4] + ch + x[5] + ch
+        info2 = criptografaTexto(info) + '\n'
+        arquivo.write(info2)
+
+    arquivo.close()
+    dictAlunos.clear()
+    carregaAlunosArquivo(arqAlunos,dictAlunos)
+
+def excluirAluno(codigo,nome,turma,turno,ano,cpf,dictAlunos):
+    ch = '*'
+    valor = (codigo,nome,turma,turno,ano,cpf)
+    dictAlunos.pop(codigo)
+
+    arquivo = open(arqAlunos,'w',encoding='utf-8')
+    for w in dictAlunos:
+        x = dictAlunos[w]
+        info = str(x[0]) + ch + str(x[0]) + ch + x[1] + ch + x[2] + ch + x[3] + ch + x[4] + ch + x[5] + ch
+        info2 = criptografaTexto(info) + '\n'
+        arquivo.write(info2)
+
+    arquivo.close()
+    dictAlunos.clear()
+    carregaAlunosArquivo(arqAlunos,dictAlunos)
 
 def organizaAlunosNome(widget,dictAlunos):
     pass
@@ -56,3 +90,6 @@ def organizaAlunosStatus(widget,dictAlunos,status):
     Situação, Ativo ou Inativo
     '''
     pass
+
+
+    

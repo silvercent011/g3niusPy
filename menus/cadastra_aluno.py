@@ -62,7 +62,7 @@ def cadastraAluno(login,nivel,usuario,dictAlunos,janelaPai,janelaFechar, funcaoF
     selecTurma = ttk.Combobox(frameGeral,textvariable=turma,font=fonteTopo3)
     #Implementar a leitura desses valores em arquivos
     selecTurma['values'] = ('Selecionar','1°Ano','2°Ano','3°Ano','4°Ano', '5°Ano')
-    selecTurma.current(1)
+    selecTurma.current(0)
     selecTurma.grid(row=3,column=4,sticky=W+E)
 
     suporte1 = ttk.Label(frameGeral,text='')
@@ -74,7 +74,7 @@ def cadastraAluno(login,nivel,usuario,dictAlunos,janelaPai,janelaFechar, funcaoF
     selecTurno = ttk.Combobox(frameGeral, textvariable=turno,font=fonteTopo3)
     #Implementar a leitura desses valores em arquivos
     selecTurno['values'] = ('Selecionar','Manhã','Tarde','Noite','Integral', 'Semi-integral')
-    selecTurno.current(1)
+    selecTurno.current(0)
     selecTurno.grid(row=3, column=6,sticky=W+E)
 
     suporte2 = ttk.Label(frameGeral,text='')
