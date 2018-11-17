@@ -6,6 +6,7 @@ from func.cripto import *
 import os
 import platform
 import sys
+from tkinter import messagebox
 
 arqAlunos = './data/database.genius'
 
@@ -74,21 +75,86 @@ def excluirAluno(codigo,nome,turma,turno,ano,cpf,dictAlunos):
     carregaAlunosArquivo(arqAlunos,dictAlunos)
 
 def organizaAlunosNome(widget,dictAlunos):
-    pass
+    widget.delete(0,END)
+    alunos = []
+    ch = ' - '
+    for x in dictAlunos:
+        info = dictAlunos[x]
+        info2 = info[1] + ch + info[2] + ch + info[3] + ch + info[0]
+        alunos.append(info2)
+    
+    alunos.sort()
+    
+    for x in alunos:
+        item = x
+        widget.insert(END,item)
 
-def organizaAlunosTurma(widget,dictAlunos,turma):
-    pass
+def organizaAlunosTurma(widget,dictAlunos):
+    widget.delete(0,END)
+    alunos = []
+    ch = ' - '
+    for x in dictAlunos:
+        info = dictAlunos[x]
+        info2 = info[2] + ch + info[1] + ch + info[3] + ch + info[0]
+        alunos.append(info2)
+    
+    alunos.sort()
+    
+    for x in alunos:
+        item = x
+        widget.insert(END,item)
+
+def organizaAlunosChave(widget,dictAlunos):
+    widget.delete(0,END)
+    alunos = []
+    ch = ' - '
+    for x in dictAlunos:
+        info = dictAlunos[x]
+        info2 = info[0] + ch + info[1] + ch + info[2] + ch + info[3]
+        alunos.append(info2)
+    
+    alunos.sort()
+    
+    for x in alunos:
+        item = x
+        widget.insert(END,item)
+
+def imprimeUnico(widget,dictAlunos,valor):
+    codigo = valor.get()
+    if codigo == '':
+        messagebox.showerror('Ops!','Aluno não selecionado.')
+    else:
+        ch = ' - '
+        linha = '---------------------------------------------------------------------------------------------------------\n'
+        arquivo = open('infoUnico.txt','w',encoding='utf-8')
+        arquivo.write(linha)
+        info = dictAlunos[codigo]
+        value = info[0] + ch + info[1] + ch + info[2] + ch + info[3] + ch + info[4] + '\n'
+        arquivo.write(value)
+        arquivo.write(linha)
+        arquivo.close()
+        messagebox.showerror('Olá','Dados impressos no arquivo!')
+
+
+def imprimeGeral(widget,dictAlunos):
+    ch = ' - '
+    linha = '---------------------------------------------------------------------------------------------------------\n'
+    arquivo = open('info.txt','w',encoding='utf-8')
+    arquivo.write(linha)
+    for x in dictAlunos:
+        info = dictAlunos[x]
+        value = info[0] + ch + info[1] + ch + info[2] + ch + info[3] + ch + info[4] + '\n'
+        arquivo.write(value)
+        arquivo.write(linha)
+    arquivo.close()
+    messagebox.showerror('Olá','Dados impressos no arquivo!')
+
+
 
 def organizaAlunosTurno(widget,dictAlunos,turno):
     pass
 
 def organizaAlunosAno(widget,dictAlunos,ano):
-    pass
-
-def organizaAlunosStatus(widget,dictAlunos,status):
-    '''
-    Situação, Ativo ou Inativo
-    '''
     pass
 
 
