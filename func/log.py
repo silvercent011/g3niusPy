@@ -5,6 +5,7 @@ from func.cripto import *
 import os
 import platform
 import sys
+from tkinter import *
 
 log_file = './data/log.genius'
 log_file_txt = './data/log.txt'
@@ -41,3 +42,13 @@ def carregaLog(dicionario):
         tupla = (listaSuporte[0],listaSuporte[1],listaSuporte[2],listaSuporte[3],listaSuporte[4],listaSuporte[5])
         dicionario[cont] = tupla                
     arquivo.close()
+
+def carregaLogWidget(widget):
+    arquivo = open(log_file,'r',encoding='utf-8')
+    linhas = arquivo.readlines()
+    ch = ' - '
+    for x in linhas:
+        atual = descriptografaTexto(x)
+        info = atual.split('*')
+        info2 = info[0] + ch + 'Level' + info[1] + ch + info[2] + ch + info[4] + ch + info[5] + ch + info[3]
+        widget.insert(END,info2) 

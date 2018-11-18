@@ -8,6 +8,7 @@ from menus.inicio_level6_func import *
 from menus.cadastra_aluno import *
 from menus.gerar_codigos import *
 from menus.pesquisa_exibir_aluno import *
+from menus.exibe_log import *
 #TkInter
 from tkinter import ttk
 from tkinter import font
@@ -106,7 +107,7 @@ def menuLevel(login,usuario,level,dictAlunos,janelaPai):
         exibir_usuarios.grid(row=5,column=0)
     #Log de Informações
     imagemLog = ImageTk.PhotoImage(Image.open('./icons/overview80.png'))
-    exibir_log = ttk.Button(level6,width=largura,compound=TOP,text='Log de Informações',image=imagemLog)
+    exibir_log = ttk.Button(level6,width=largura,compound=TOP,text='Log de Informações',image=imagemLog,command=partial(janela_log,login,level,usuario,janelaPai,janela,btVoltarCadastroB))
     exibir_log.image = imagemLog
     exibir_log.grid(row=5,column=1)
     #Configurações

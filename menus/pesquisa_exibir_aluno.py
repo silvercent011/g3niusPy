@@ -19,6 +19,9 @@ def pesquisaAluno(login,nivel,usuario,dictAlunos,janelaPai,janelaFechar, funcaoF
     janelaFechar.destroy()
     dictAlunos.clear()
 
+    global infoUser
+    infoUser = [login,nivel,usuario]
+
     carregaAlunosArquivo(arqAlunos,dictAlunos)
 
     r = ttk.Style()
@@ -90,6 +93,11 @@ def pesquisaAluno(login,nivel,usuario,dictAlunos,janelaPai,janelaFechar, funcaoF
     btChave = ttk.Button(filtros,text='Filtrar por chave',compound=TOP,image=imageChave,command=partial(organizaAlunosChave,boxAlunos,dictAlunos))
     btChave.grid(row=0,column=2,ipady=altura)
     btChave.image = imageChave
+    
+    imageAno = ImageTk.PhotoImage(Image.open('./icons/30/Calendar30px.png'))
+    btFAno = ttk.Button(filtros,text='Filtrar por ano',compound=TOP,image=imageAno,command=partial(organizaAlunosAno,boxAlunos,dictAlunos))
+    btFAno.grid(row=0,column=3,ipady=altura)
+    btFAno.image = imageAno
 
     #Suporte2
     suporte2 = ttk.Label(frameGeral,text='')
@@ -219,21 +227,27 @@ def carregaParaEdicao(evt):
     '''
     Carrega valores selecionados no listbox para a função colocaFrame
     '''
-    limpa()
-    wid = evt.widget
-    valor1 = wid.get(wid.curselection()[0])
-    valor2 = valor1.split(' - ')
-
-    alunos = {}
-    carregaAlunosArquivo(arqAlunos,alunos)
     try:
-        codAluno = valor2[0]
-        infoCompleta = alunos[codAluno]
-    except:
-        codAluno = valor2[-1]
-        infoCompleta = alunos[codAluno]
+        wid = evt.widget
+        valor1 = wid.get(wid.curselection()[0])
+        valor2 = valor1.split(' - ')
 
-    colocaFrame(infoCompleta)
+        limpa()
+
+        alunos = {}
+        carregaAlunosArquivo(arqAlunos,alunos)
+        try:
+            codAluno = valor2[0]
+            infoCompleta = alunos[codAluno]
+        except:
+            codAluno = valor2[-1]
+            infoCompleta = alunos[codAluno]
+
+        colocaFrame(infoCompleta)
+    except:
+        pass
+
+
 
 def colocaFrame(info):
     '''
@@ -294,8 +308,12 @@ def ponte(inCodigo,inNome,inTurma,inTurno,inAno,cpf,dictAlunos,opcao):
     else:
         if opcao == 1:
             salvarModificacoesAlunos(codigo,nome,turma,turno,ano,cpf,dictAlunos)
+            acao = 'MODIFICOU INFORMAÇÕES DO ALUNO(A) ('+ codigo +')' 
+            colocaLog(infoUser[0],infoUser[2],infoUser[1],acao)
         elif opcao == 2:
             excluirAluno(codigo,nome,turma,turno,ano,cpf,dictAlunos)
+            acao = 'EXCLUIU ALUNO(A) ('+ codigo +')' 
+            colocaLog(infoUser[0],infoUser[2],infoUser[1],acao)
             limpa()
         boxAlunos.delete(0,END)
         carregaAlunosBox(boxAlunos,dictAlunos)

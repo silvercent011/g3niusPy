@@ -154,8 +154,20 @@ def imprimeGeral(widget,dictAlunos):
 def organizaAlunosTurno(widget,dictAlunos,turno):
     pass
 
-def organizaAlunosAno(widget,dictAlunos,ano):
-    pass
+def organizaAlunosAno(widget,dictAlunos):
+    widget.delete(0,END)
+    alunos = []
+    ch = ' - '
+    for x in dictAlunos:
+        info = dictAlunos[x]
+        info2 = info[4] + ch + info[0] + ch + info[1] + ch + info[2] + ch + info[3]
+        alunos.append(info2)
+    
+    alunos.sort()
+    
+    for x in alunos:
+        item = x
+        widget.insert(END,item)
 
 
     
