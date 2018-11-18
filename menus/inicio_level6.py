@@ -65,7 +65,7 @@ def menuLevel(login,usuario,level,dictAlunos,janelaPai):
     cadastra_aluno.grid(row=4,column=0)
     #Pesquisar Alunos
     imagemPesquisa = ImageTk.PhotoImage(Image.open('./icons/search80.png'))
-    pesquisa_aluno = ttk.Button(level6,width=largura,compound=TOP,text='Pesquisar Alunos',image=imagemPesquisa,command=partial(pesquisaAluno,login,level,usuario,dictAlunos,janelaPai,janela,btVoltarCadastroA))
+    pesquisa_aluno = ttk.Button(level6,width=largura,compound=TOP,text='Pesquisar Alunos',image=imagemPesquisa,command=partial(pesquisaAluno,login,level,usuario,dictAlunos,janelaPai,janela,btVoltarCadastroA,1))
     pesquisa_aluno.image = imagemPesquisa
     pesquisa_aluno.grid(row=4,column=1)
     #Material Impresso
@@ -102,7 +102,7 @@ def menuLevel(login,usuario,level,dictAlunos,janelaPai):
         avisos.grid(row=5,column=0)
     elif str(level) == '6':
         imagemUsuarios = ImageTk.PhotoImage(Image.open('./icons/gruposDeUsuários80.png'))
-        exibir_usuarios = ttk.Button(level6,width=largura,compound=TOP,text='Gerenciar Usuários',image=imagemUsuarios,command=partial(gerUsers,login,usuario,level))
+        exibir_usuarios = ttk.Button(level6,width=largura,compound=TOP,text='Gerenciar Usuários',image=imagemUsuarios,command=partial(pesquisaAluno,login,level,usuario,dictAlunos,janelaPai,janela,btVoltarCadastroA,2))
         exibir_usuarios.image = imagemUsuarios
         exibir_usuarios.grid(row=5,column=0)
     #Log de Informações

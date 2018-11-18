@@ -1,5 +1,5 @@
 
-arquivo = open('./data/database.genius','r',encoding='utf-8')
+arquivo = open('./data/users.genius','r',encoding='utf-8')
 
 d = 1079
 n = 1073
