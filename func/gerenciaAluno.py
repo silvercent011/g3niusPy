@@ -11,6 +11,9 @@ from tkinter import messagebox
 arqAlunos = './data/database.genius'
 
 def cadastrarAlunosArquivo(nomeAluno,codigoAluno,turma,turno,ano,cpfUser,dictAlunos):
+    '''
+    Cadastra os dados inseridos nos parâmetros no arquivo database
+    '''
     arquivo = open(arqAlunos, 'a', encoding='utf-8')
     ch = '*'
     info = codigoAluno+ ch + codigoAluno + ch + nomeAluno + ch + turma + ch + turno + ch + ano + ch + cpfUser + ch 
@@ -21,6 +24,9 @@ def cadastrarAlunosArquivo(nomeAluno,codigoAluno,turma,turno,ano,cpfUser,dictAlu
     carregaAlunosArquivo(arqAlunos,dictAlunos)
 
 def carregaAlunosArquivo(arquivo,dictAlunos):
+    '''
+    Carrega os alunos do arquivo database para o dicionário de alunos
+    '''
     arquivo = open(arqAlunos, 'r', encoding='utf-8')
     linhas = arquivo.readlines()
     for x in linhas:
@@ -33,7 +39,7 @@ def carregaAlunosArquivo(arquivo,dictAlunos):
 
 def carregaAlunosBox(widget,dictAlunos):
     '''
-    Carregaa alunos no widget dado como parâmetro
+    Carrega alunos no widget dado como parâmetro
     '''
     cont=0
     for x in dictAlunos:
@@ -43,6 +49,9 @@ def carregaAlunosBox(widget,dictAlunos):
     
 
 def salvarModificacoesAlunos(codigo,nome,turma,turno,ano,cpf,dictAlunos):
+    '''
+    Salva modificações feitas no arquivo
+    '''
     ch = '*'
     valor = (codigo,nome,turma,turno,ano,cpf)
     dictAlunos.update(codigo = valor)
@@ -59,6 +68,9 @@ def salvarModificacoesAlunos(codigo,nome,turma,turno,ano,cpf,dictAlunos):
     carregaAlunosArquivo(arqAlunos,dictAlunos)
 
 def excluirAluno(codigo,nome,turma,turno,ano,cpf,dictAlunos):
+    '''
+    Exclui aluno do arquivo e dicionário
+    '''
     ch = '*'
     valor = (codigo,nome,turma,turno,ano,cpf)
     dictAlunos.pop(codigo)
@@ -75,6 +87,9 @@ def excluirAluno(codigo,nome,turma,turno,ano,cpf,dictAlunos):
     carregaAlunosArquivo(arqAlunos,dictAlunos)
 
 def organizaAlunosNome(widget,dictAlunos):
+    '''
+    Organiza alunos no widget pela ordem alfabética dos nomes
+    '''
     widget.delete(0,END)
     alunos = []
     ch = ' - '
@@ -90,6 +105,9 @@ def organizaAlunosNome(widget,dictAlunos):
         widget.insert(END,item)
 
 def organizaAlunosTurma(widget,dictAlunos):
+    '''
+    Organiza alunos no widget pela ordem crescente das turmas
+    '''
     widget.delete(0,END)
     alunos = []
     ch = ' - '
@@ -105,6 +123,9 @@ def organizaAlunosTurma(widget,dictAlunos):
         widget.insert(END,item)
 
 def organizaAlunosChave(widget,dictAlunos):
+    '''
+    Organiza alunos no widget pela ordem crescente das chaves
+    '''
     widget.delete(0,END)
     alunos = []
     ch = ' - '
@@ -120,6 +141,9 @@ def organizaAlunosChave(widget,dictAlunos):
         widget.insert(END,item)
 
 def imprimeUnico(widget,dictAlunos,valor):
+    '''
+    Imprime valor selecionado no arquivo
+    '''
     codigo = valor.get()
     if codigo == '':
         messagebox.showerror('Ops!','Aluno não selecionado.')
@@ -137,15 +161,21 @@ def imprimeUnico(widget,dictAlunos,valor):
 
 
 def imprimeGeral(widget,dictAlunos):
+    '''
+    Imprime todos os dados em um arquivo
+    '''
     ch = ' - '
     linha = '---------------------------------------------------------------------------------------------------------\n'
     arquivo = open('info.txt','w',encoding='utf-8')
     arquivo.write(linha)
+    cont = 1
     for x in dictAlunos:
+        number = '(' + str(cont) +')'
         info = dictAlunos[x]
-        value = info[0] + ch + info[1] + ch + info[2] + ch + info[3] + ch + info[4] + '\n'
+        value = number + ch + info[0] + ch + info[1] + ch + info[2] + ch + info[3] + ch + info[4] + '\n'
         arquivo.write(value)
         arquivo.write(linha)
+        cont+=1
     arquivo.close()
     messagebox.showerror('Olá','Dados impressos no arquivo!')
 
@@ -155,6 +185,9 @@ def organizaAlunosTurno(widget,dictAlunos,turno):
     pass
 
 def organizaAlunosAno(widget,dictAlunos):
+    '''
+    Organiza alunos no widget pela ordem crescente do ano letivo
+    '''
     widget.delete(0,END)
     alunos = []
     ch = ' - '

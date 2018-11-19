@@ -49,23 +49,27 @@ def gerarCodigos(login,nivel,usuario,janelaPai,janelaFechar, funcaoFechar):
     fonteTopo5 = font.Font(family='Segoe Ui', size=35, weight='bold')
     fonteTopo6 = font.Font(family='Segoe Ui', size=14, weight='bold')
 
-    label1 = ttk.Label(frameGeral,text='GERAR CÓDIGOS',font=fonteTopo4)
-    label1.grid(row=0,column=1,sticky=W)
     label2 = ttk.Label(frameGeral,text='Selecione o nível:',font=fonteTo5)
-    label2.grid(row=1,column=1,sticky=W)
-    levels = StringVar()
-    niveis = ttk.Combobox(frameGeral,textvariable=levels,font=fonteTopo3)
+    label2.grid(row=1,column=0,sticky=W)
+    label2['style'] = 'branco.TLabel'
+    niveis = ttk.Combobox(frameGeral,font=fonteTopo3)
     niveis['values'] = ('Selecionar','3','4','6')
-    niveis.grid(row=2,column=1,sticky=W+E)
+    niveis.current(0)
+    niveis.grid(row=2,column=0,columnspan=3,sticky=W+E)
 
     label3 = ttk.Label(frameGeral,text='',font=fonteTopo3)
-    label3.grid(row=4,column=1,sticky=W)
+    label3.grid(row=4,column=0,sticky=W)
+    label3['style'] = 'branco.TLabel'
 
-    salvar = ttk.Button(frameGeral,text='Salvar',command=partial(ponte,login,nivel,usuario,niveis,label3,codigos))
-    salvar.grid(row=10,column=1)    
+    imageSalvar = ImageTk.PhotoImage(Image.open('./icons/30/Save30px.png'))
+    salvar = ttk.Button(frameGeral,text='Salvar',width=largura,compound=TOP, image=imageSalvar,command=partial(ponte,login,nivel,usuario,niveis,label3,codigos))
+    salvar.image = imageSalvar
+    salvar.grid(row=10,column=0,sticky=W+E)    
 
-    voltar = ttk.Button(frameGeral,text='Voltar',command=partial(funcaoFechar,login,usuario,nivel,janelaPai,frameGeral))
-    voltar.grid(row=10,column=2)
+    imageVoltar = ImageTk.PhotoImage(Image.open('./icons/30/Cancel30px.png'))
+    voltar = ttk.Button(frameGeral,text='Voltar',width=largura,compound=TOP,image=imageVoltar,command=partial(funcaoFechar,login,usuario,nivel,janelaPai,frameGeral))
+    voltar.image = imageVoltar
+    voltar.grid(row=10,column=1,sticky=W+E)
 
 def ponte(login,level,usuario,nivel,status,dictCodigos):
     nivel2 = nivel.get()

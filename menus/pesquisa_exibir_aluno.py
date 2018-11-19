@@ -61,7 +61,12 @@ def pesquisaAluno(login,nivel,usuario,dictAlunos,janelaPai,janelaFechar, funcaoF
     fonteTopo6 = font.Font(family='Segoe Ui', size=14, weight='bold')
     
     #Box Alunos
-    labelBox = ttk.Labelframe(frameGeral,text='ALUNOS ENCONTRADOS NO BANCO DE DADOS',width=largura2)
+    if codigoJanela == 1:
+        texto = 'ALUNOS ENCONTRADOS NO BANCO DE DADOS'
+    elif codigoJanela == 2:
+        texto = 'USUÁRIOS ENCONTRADOS NO BANCO DE DADOS'
+        
+    labelBox = ttk.Labelframe(frameGeral,text=texto,width=largura2)
     labelBox['style'] = 'branco.TLabelframe'
     labelBox.grid(row=1,column=0,sticky=W+E)
     

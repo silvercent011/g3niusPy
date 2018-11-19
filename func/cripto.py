@@ -12,6 +12,12 @@ Genius(Lite) Security System 2.5
 criptoPublic = './data/chavePublica.txt'
 criptoPrivate = './data/chavePrivada.txt'
 def carregaChave(chave):
+    '''
+    Carrega chaves dos arquivos para usar na criptografia
+    1 - Chave para criptografar
+    2 - Chave para descriptografar
+    def carregaChave(1)
+    '''
     if (chave == 1):
         arquivo = open(criptoPublic,'r',encoding='utf-8')
         leituraAtual = ''
@@ -41,7 +47,7 @@ def carregaChave(chave):
 
 def criptografaTexto(texto):
     '''
-    Função recebe uma string e a retorna criptogradafa
+    Função recebe uma string e a retorna criptografada
     '''
     chave = carregaChave(1)
     final = ''

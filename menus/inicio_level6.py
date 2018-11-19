@@ -72,17 +72,20 @@ def menuLevel(login,usuario,level,dictAlunos,janelaPai):
     imagemImpresso = ImageTk.PhotoImage(Image.open('./icons/exam80.png'))
     material_impresso = ttk.Button(level6,width=largura,compound=TOP,text='Material Impresso',image=imagemImpresso, command=partial(materialImpresso,login,usuario,level))
     material_impresso.image = imagemImpresso
+    material_impresso.state(['disabled'])
     material_impresso.grid(row=4,column=2)
     #Gerar Códigos/Lançar Notas/Gerenciar Horários
     if str(level) == '3':
         imagemNotas = ImageTk.PhotoImage(Image.open('./icons/ReportCard80.png'))
         lancar_notas = ttk.Button(level6,width=largura,compound=TOP,text='Lançar Notas',image=imagemNotas,command=partial(lancaNotas,login,usuario,level))
         lancar_notas.image = imagemNotas
+        lancar_notas.state(['disabled'])
         lancar_notas.grid(row=4,column=3,sticky=W)
     elif str(level) == '4':
         imagemHorarios = ImageTk.PhotoImage(Image.open('./icons/WeekView80.png'))
         gerenc_horarios = ttk.Button(level6,width=largura,compound=TOP,text='Gerenciar Horários',image=imagemHorarios,command=partial(gerenciarHorarios,login,usuario,level))
         gerenc_horarios.image = imagemHorarios
+        gerenc_horarios.state(['disabled'])
         gerenc_horarios.grid(row=4,column=3,sticky=W)
     elif str(level) == '6':
         imagemCodigos = ImageTk.PhotoImage(Image.open('./icons/newDocument80.png'))
@@ -94,11 +97,13 @@ def menuLevel(login,usuario,level,dictAlunos,janelaPai):
         imagemFrequencia = ImageTk.PhotoImage(Image.open('./icons/datasheetfilled80.png'))
         frequencia = ttk.Button(level6,width=largura,compound=TOP,text='Frequência',image=imagemFrequencia,command=partial(frequenciaAlunos,login,usuario,level))
         frequencia.image = imagemFrequencia
+        frequencia.state(['disabled'])
         frequencia.grid(row=5,column=0)
     elif str(level) == '4':
         imagemAvisos = ImageTk.PhotoImage(Image.open('./icons/Alert80.png'))
         avisos = ttk.Button(level6,width=largura,compound=TOP,text='Avisos',image=imagemAvisos,command=partial(avisosGer,login,usuario,level))
         avisos.image = imagemAvisos
+        avisos.state(['disabled'])
         avisos.grid(row=5,column=0)
     elif str(level) == '6':
         imagemUsuarios = ImageTk.PhotoImage(Image.open('./icons/gruposDeUsuários80.png'))
@@ -106,14 +111,22 @@ def menuLevel(login,usuario,level,dictAlunos,janelaPai):
         exibir_usuarios.image = imagemUsuarios
         exibir_usuarios.grid(row=5,column=0)
     #Log de Informações
-    imagemLog = ImageTk.PhotoImage(Image.open('./icons/overview80.png'))
-    exibir_log = ttk.Button(level6,width=largura,compound=TOP,text='Log de Informações',image=imagemLog,command=partial(janela_log,login,level,usuario,janelaPai,janela,btVoltarCadastroB))
-    exibir_log.image = imagemLog
-    exibir_log.grid(row=5,column=1)
+    if str(level) == '3':
+        imagemLog = ImageTk.PhotoImage(Image.open('./icons/overview80.png'))
+        boletins = ttk.Button(level6,width=largura,compound=TOP,text='Exibir Boletins',image=imagemLog,command=partial(ops))
+        boletins.image = imagemLog
+        boletins.state(['disabled'])
+        boletins.grid(row=5,column=1)
+    elif str(level) == '4' or str(level) == '6':
+        imagemLog = ImageTk.PhotoImage(Image.open('./icons/overview80.png'))
+        exibir_log = ttk.Button(level6,width=largura,compound=TOP,text='Log de Informações',image=imagemLog,command=partial(janela_log,login,level,usuario,janelaPai,janela,btVoltarCadastroB))
+        exibir_log.image = imagemLog
+        exibir_log.grid(row=5,column=1)
     #Configurações
     imagemConfig = ImageTk.PhotoImage(Image.open('./icons/Automation80.png'))
     config = ttk.Button(level6,width=largura,compound=TOP,text='Configurações',image=imagemConfig)
     config.image = imagemConfig
+    config.state(['disabled'])
     config.grid(row=5,column=2)
     #Sair
     imagemSair= ImageTk.PhotoImage(Image.open('./icons/cancel80.png'))

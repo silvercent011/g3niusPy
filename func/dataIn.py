@@ -9,10 +9,10 @@ data1 = './data/database_intern.genius'
 data2 = './data/hrrq.genius'
 dataAlunos = './data/database.genius'
 
-def cadastraAluno(nome,turma,turno,ano,dicionario,USER,LOGIN,LEVEL):
-    pass
-
 def cadastraTurma(turma,dictTurmas):
+    '''
+    Cadastra turmas no sistema
+    '''
     ch = '*'
     if turma in dictTurmas:
         print('A turma já existe')
