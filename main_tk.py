@@ -175,7 +175,7 @@ sair = ttk.Button(loginForms,width=largura,text='Sair',command=btSairInicio,comp
 sair.image = imagemSair
 sair.grid(row=11,column=11,sticky=W+E,ipady=altura)
 
-
+'''
 #ÁREA DE TESTES
 level3 = ttk.Button(loginForms, width=largura, text='Level3', command=partial(botoesDeTeste,'000000000000','TESTE',3,alunos,janela))
 level3.grid(row=14,column=10,sticky=W)
@@ -185,7 +185,7 @@ level4.grid(row=15,column=10,sticky=W)
 
 level6 = ttk.Button(loginForms, width=largura, text='Level6', command=partial(botoesDeTeste,'000000000000','TESTE',6,alunos,janela))
 level6.grid(row=16,column=10,sticky=W)
-
+'''
 
 
 janela.configure(background='white')

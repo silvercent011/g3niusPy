@@ -143,5 +143,6 @@ def cadastro(nome,cpf,senha,senhaC,codigo,chaves,usuarios):
             else:
                 if codigo in chaves:
                     cadastraUsuario(cpf,senha,nome,codigo,chaves,usuarios)
+                    messagebox.showinfo('Parabéns!','Usuário Cadastrado com Sucesso')
                 else:
                     messagebox.showerror('Ops!', 'Código Inválido')
