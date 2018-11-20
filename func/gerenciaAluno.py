@@ -95,7 +95,7 @@ def organizaAlunosNome(widget,dictAlunos):
     ch = ' - '
     for x in dictAlunos:
         info = dictAlunos[x]
-        info2 = info[1] + ch + info[2] + ch + info[3] + ch + info[0]
+        info2 = info[1] + ch + info[2] + ch + info[3] + ch + info[0] + ch + info[4]
         alunos.append(info2)
     
     alunos.sort()
@@ -113,7 +113,7 @@ def organizaAlunosTurma(widget,dictAlunos):
     ch = ' - '
     for x in dictAlunos:
         info = dictAlunos[x]
-        info2 = info[2] + ch + info[1] + ch + info[3] + ch + info[0]
+        info2 = info[2] + ch + info[1] + ch + info[3] + ch + info[0] + ch + info[4]
         alunos.append(info2)
     
     alunos.sort()
@@ -131,7 +131,7 @@ def organizaAlunosChave(widget,dictAlunos):
     ch = ' - '
     for x in dictAlunos:
         info = dictAlunos[x]
-        info2 = info[0] + ch + info[1] + ch + info[2] + ch + info[3]
+        info2 = info[0] + ch + info[1] + ch + info[2] + ch + info[3] + ch + info[4]
         alunos.append(info2)
     
     alunos.sort()
@@ -193,7 +193,7 @@ def organizaAlunosAno(widget,dictAlunos):
     ch = ' - '
     for x in dictAlunos:
         info = dictAlunos[x]
-        info2 = info[4] + ch + info[0] + ch + info[1] + ch + info[2] + ch + info[3]
+        info2 = info[4] + ch + info[1] + ch + info[2] + ch + info[3] + ch + info[0]
         alunos.append(info2)
     
     alunos.sort()

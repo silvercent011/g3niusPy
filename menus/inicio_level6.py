@@ -3,6 +3,7 @@ from functools import partial
 #Funções
 from func.login import *
 from func.log import *
+from func.geniusInfo import *
 from datetime import *
 from menus.inicio_level6_func import *
 from menus.cadastra_aluno import *
@@ -23,7 +24,7 @@ def menuLevel(login,usuario,level,dictAlunos,janelaPai):
     '''
     Menu para usuários de diferentes níveis
     '''
-    version = 'Genius (LITE) - 7.0.1'
+    version = 'Genius (LITE) - ' + versao()
     info        = 'Usuário nível ' + str(level)
     altura      = ''
     largura     = 30

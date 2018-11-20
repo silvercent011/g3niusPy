@@ -5,6 +5,7 @@ Genius (Lite) Tkinter Main Interface - GTMI
 #Funções
 from func.login import *
 from func.log import *
+from func.geniusInfo import *
 from functools import partial
 #Janelas
 from menus.inicio_level6 import *
@@ -70,7 +71,7 @@ carregaLogin(logins)
 carregaCodigos(codigos)
 carregaLog(log)
 
-version = 'Genius (LITE) - 7.0.1'
+version = 'Genius (LITE) - ' + versao()
 altura       = 10
 largura      = 20
 largura2     = 62
