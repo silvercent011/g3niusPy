@@ -42,11 +42,7 @@ def carregaAlunosBox(widget,dictAlunos):
     '''
     Carrega alunos no widget dado como parâmetro
     '''
-    cont=0
-    for x in dictAlunos:
-    	item = x + ' - ' + str(dictAlunos[x][2]) + ' - ' + str(dictAlunos[x][3]) + ' - ' + str(dictAlunos[x][1])
-    	widget.insert(END,item)
-    	cont+=1
+    organizaAlunosNome(widget,dictAlunos)
     
 
 def salvarModificacoesAlunos(codigo,nome,turma,turno,ano,cpf,dictAlunos):
@@ -96,14 +92,11 @@ def organizaAlunosNome(widget,dictAlunos):
     ch = ' - '
     for x in dictAlunos:
         info = dictAlunos[x]
-        info2 = info[1] + ch + info[2] + ch + info[3] + ch + info[0] + ch + info[4]
+        info2 = info[1] + ch + info[2] + ch + info[3] + ch + info[4] + ch + info[0]
         alunos.append(info2)
     
     bSort(alunos)
-    
-    for x in alunos:
-        item = x
-        widget.insert(END,item)
+    widget.insert(END,*alunos)
 
 def organizaAlunosTurma(widget,dictAlunos):
     '''
@@ -114,14 +107,11 @@ def organizaAlunosTurma(widget,dictAlunos):
     ch = ' - '
     for x in dictAlunos:
         info = dictAlunos[x]
-        info2 = info[2] + ch + info[1] + ch + info[3] + ch + info[0] + ch + info[4]
+        info2 = info[2] + ch + info[1] + ch + info[3] + ch + info[4] + ch + info[0]
         alunos.append(info2)
     
     bSort(alunos)
-    
-    for x in alunos:
-        item = x
-        widget.insert(END,item)
+    widget.insert(END,*alunos)
 
 def organizaAlunosChave(widget,dictAlunos):
     '''
@@ -136,10 +126,7 @@ def organizaAlunosChave(widget,dictAlunos):
         alunos.append(info2)
     
     bSort(alunos)
-    
-    for x in alunos:
-        item = x
-        widget.insert(END,item)
+    widget.insert(END,*alunos)
 
 def imprimeUnico(widget,dictAlunos,valor):
     '''
@@ -198,10 +185,7 @@ def organizaAlunosAno(widget,dictAlunos):
         alunos.append(info2)
     
     bSort(alunos)
-    
-    for x in alunos:
-        item = x
-        widget.insert(END,item)
+    widget.insert(END,*alunos)
 
 
     

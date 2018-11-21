@@ -191,7 +191,7 @@ def pesquisaAluno(login,nivel,usuario,dictAlunos,janelaPai,janelaFechar, funcaoF
         ano['style'] = 'branco.TLabel'
 
         global inAno
-        inAno = ttk.Spinbox(frameEdit, font=fonteTopo2)
+        inAno = ttk.Spinbox(frameEdit, font=fonteTopo2,from_=1950,to=2200)
         inAno.grid(row=7,column=0,sticky=W+E)
         '''
         #Status A/N

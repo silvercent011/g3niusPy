@@ -1,3 +1,3 @@
 def versao():
-    versao = '1.1.0'
+    versao = '1.1.2'
     return versao
