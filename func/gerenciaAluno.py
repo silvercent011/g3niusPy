@@ -3,6 +3,7 @@
 from tkinter import *
 from datetime import *
 from func.cripto import *
+from func.b_sort import *
 import os
 import platform
 import sys
@@ -98,7 +99,7 @@ def organizaAlunosNome(widget,dictAlunos):
         info2 = info[1] + ch + info[2] + ch + info[3] + ch + info[0] + ch + info[4]
         alunos.append(info2)
     
-    alunos.sort()
+    bSort(alunos)
     
     for x in alunos:
         item = x
@@ -116,7 +117,7 @@ def organizaAlunosTurma(widget,dictAlunos):
         info2 = info[2] + ch + info[1] + ch + info[3] + ch + info[0] + ch + info[4]
         alunos.append(info2)
     
-    alunos.sort()
+    bSort(alunos)
     
     for x in alunos:
         item = x
@@ -134,7 +135,7 @@ def organizaAlunosChave(widget,dictAlunos):
         info2 = info[0] + ch + info[1] + ch + info[2] + ch + info[3] + ch + info[4]
         alunos.append(info2)
     
-    alunos.sort()
+    bSort(alunos)
     
     for x in alunos:
         item = x
@@ -196,7 +197,7 @@ def organizaAlunosAno(widget,dictAlunos):
         info2 = info[4] + ch + info[1] + ch + info[2] + ch + info[3] + ch + info[0]
         alunos.append(info2)
     
-    alunos.sort()
+    bSort(alunos)
     
     for x in alunos:
         item = x
