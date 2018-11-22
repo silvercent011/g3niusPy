@@ -56,18 +56,21 @@ def cadastraUsuarios(chaves,usuarios):
     label1 = ttk.Label(frameGeral, text='NOME COMPLETO',font=fonteTopo3)
     label1.grid(row=1,column=0,sticky=W)
     label1['style'] = 'branco.TLabel'
+    global nomeCompleto
     nomeCompleto = ttk.Entry(frameGeral,font=fonteTopo3)
     nomeCompleto.grid(row=2,column=0,columnspan=10,sticky=W+E)
 
     label2 = ttk.Label(frameGeral, text='CPF (apenas números)',font=fonteTopo3)
     label2.grid(row=3,column=0,sticky=W)
     label2['style'] = 'branco.TLabel'
+    global cpf
     cpf = ttk.Entry(frameGeral,font=fonteTopo3)
     cpf.grid(row=4,column=0,sticky=W+E)
 
     label3 = ttk.Label(frameGeral, text='SENHA',font=fonteTopo3)
     label3.grid(row=6,column=0,sticky=W)
     label3['style'] = 'branco.TLabel'
+    global senha
     senha = ttk.Entry(frameGeral,show='*',font=fonteTopo3)
     senha.grid(row=7, column=0,columnspan=6,sticky=W+E)
 
@@ -78,6 +81,7 @@ def cadastraUsuarios(chaves,usuarios):
     label4 = ttk.Label(frameGeral, text='CONFIRMAR SENHA',font=fonteTopo3)
     label4.grid(row=6,column=7,sticky=W)
     label4['style'] = 'branco.TLabel'
+    global senhaC
     senhaC = ttk.Entry(frameGeral,show='*',font=fonteTopo3)
     senhaC.grid(row=7, column=7,sticky=W+E)
 
@@ -92,6 +96,7 @@ def cadastraUsuarios(chaves,usuarios):
     label7 = ttk.Label(frameGeral,text='Codigo Verificador',font=fonteTopo3)
     label7.grid(row=12, column=0,sticky=W)
     label7['style'] = 'branco.TLabel'
+    global codigo
     codigo = ttk.Entry(frameGeral,font=fonteTopo3)
     codigo.grid(row=13,column=0,columnspan=6,sticky=W+E)
 
@@ -119,30 +124,42 @@ def fecharJanela(janela):
 def ponte(nomeCompleto,cpf,senha,senhaC,codigo,chaves,usuarios):
     nome2 = nomeCompleto.get()
     nome2 = nome2.upper()
-    nomeCompleto.delete(0,END)
     cpf2 = cpf.get()
-    cpf.delete(0,END)
     senha2 = senha.get()
-    senha.delete(0,END)
     senhaC2 = senhaC.get()
-    senhaC.delete(0,END)
     codigo2 = codigo.get()
-    codigo.delete(0,END)
     cadastro(nome2,cpf2,senha2,senhaC2,codigo2,chaves,usuarios)
 
-def cadastro(nome,cpf,senha,senhaC,codigo,chaves,usuarios):
-    cpflen = len(cpf)
-    if (cpf in usuarios):
-        messagebox.showerror('Ops!','Um usuário com o mesmo CPF já está cadastrado!')
+def cadastro(nome,cpf2,senha2,senhaC2,codigo2,chaves,usuarios):
+    cpflen = len(cpf2)
+    if nome == '' or cpf2 == '' or senha2 == '' or senhaC2 == '' or codigo == '':
+        messagebox.showerror('Ops!', 'Você preencheu todos os campos?')
     else:
-        if (cpflen>11 or cpflen<11):
-            messagebox.showerror('Ops!', 'O cpf tá certo amigo?')
+        if (cpf2 in usuarios):
+            cpf.delete(0,END)
+            messagebox.showerror('Ops!','Um usuário com o mesmo CPF já está cadastrado!')
         else:
-            if (senha != senhaC):
-                messagebox.showinfo('Ops!', 'As senhas não conferem')
-            else:
-                if codigo in chaves:
-                    cadastraUsuario(cpf,senha,nome,codigo,chaves,usuarios)
-                    messagebox.showinfo('Parabéns!','Usuário Cadastrado com Sucesso')
+            if (cpf2.isnumeric()):
+                if (cpflen>11 or cpflen<11):
+                    cpf.delete(0,END)
+                    messagebox.showerror('Ops!', 'O cpf tá certo amigo?')
                 else:
-                    messagebox.showerror('Ops!', 'Código Inválido')
+                    if (senha2 != senhaC2):
+                        senha.delete(0,END)
+                        senhaC.delete(0,END)
+                        messagebox.showerror('Ops!', 'As senhas não conferem')
+                    else:
+                        if codigo2 in chaves:
+                            cadastraUsuario(cpf2,senha2,nome,codigo2,chaves,usuarios)
+                            nomeCompleto.delete(0,END)
+                            cpf.delete(0,END)
+                            senha.delete(0,END)
+                            senhaC.delete(0,END)
+                            codigo.delete(0,END)
+                            messagebox.showinfo('Parabéns!','Usuário Cadastrado com Sucesso')
+                        else:
+                            codigo.delete(0,END)
+                            messagebox.showerror('Ops!', 'Código Inválido') 
+            else:
+                cpf.delete(0,END)
+                messagebox.showerror('Ops!','O campo de cpf só aceita números')

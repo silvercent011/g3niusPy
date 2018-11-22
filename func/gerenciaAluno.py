@@ -44,7 +44,6 @@ def carregaAlunosBox(widget,dictAlunos):
     '''
     organizaAlunosNome(widget,dictAlunos)
     
-
 def salvarModificacoesAlunos(codigo,nome,turma,turno,ano,cpf,dictAlunos):
     '''
     Salva modificações feitas no arquivo
@@ -145,8 +144,7 @@ def imprimeUnico(widget,dictAlunos,valor):
         arquivo.write(value)
         arquivo.write(linha)
         arquivo.close()
-        messagebox.showerror('Olá','Dados impressos no arquivo!')
-
+        messagebox.showinfo('Olá','Dados impressos no arquivo!')
 
 def imprimeGeral(widget,dictAlunos):
     '''
@@ -157,17 +155,21 @@ def imprimeGeral(widget,dictAlunos):
     arquivo = open('info.txt','w',encoding='utf-8')
     arquivo.write(linha)
     cont = 1
+    listaSuporte = []
     for x in dictAlunos:
-        number = '(' + str(cont) +')'
         info = dictAlunos[x]
-        value = number + ch + info[0] + ch + info[1] + ch + info[2] + ch + info[3] + ch + info[4] + '\n'
+        value = info[0] + ch + info[1] + ch + info[2] + ch + info[3] + ch + info[4]
+        listaSuporte.append(value)
+    bSort(listaSuporte)
+    for x in listaSuporte:
+        number = '(' + str(cont) +')'
+        atual = x
+        value = number + ch + atual + '\n'
         arquivo.write(value)
         arquivo.write(linha)
         cont+=1
     arquivo.close()
-    messagebox.showerror('Olá','Dados impressos no arquivo!')
-
-
+    messagebox.showinfo('Olá','Dados impressos no arquivo!')
 
 def organizaAlunosTurno(widget,dictAlunos,turno):
     pass

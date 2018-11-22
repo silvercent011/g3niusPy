@@ -1,7 +1,7 @@
 
 def bSort(lista):
     '''
-    Organiza listas
+    Organiza listas pelo método Bubble Sort
     '''
     tamanho = len(lista) - 1
     suporte = False

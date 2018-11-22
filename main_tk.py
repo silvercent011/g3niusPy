@@ -112,7 +112,7 @@ ladoInfo['padding'] = (espacamento1,espacamento2)
 
 
 #Lado Info
-welcome = ttk.Label(ladoInfo,width=largura3,text='THINKED FOR ALL,\nBUILT \nFOR YOU!',font=fonteTopo5)
+welcome = ttk.Label(ladoInfo,width=largura3,text='THINK.ED FOR ALL,\nBUILT \nFOR YOU!',font=fonteTopo5)
 welcome.grid(row=0,column=0)
 welcome['style'] = 'branco.TLabel'
 

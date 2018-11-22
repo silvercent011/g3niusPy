@@ -389,10 +389,12 @@ def ponte(inCodigo,inNome,inTurma,inTurno,inAno,cpf,dictAlunos,opcao):
         if opcao == 1:
             salvarModificacoesAlunos(codigo,nome,turma,turno,ano,cpf,dictAlunos)
             acao = 'MODIFICOU INFORMAÇÕES DO ALUNO(A) ('+ codigo +')' 
+            messagebox.showinfo('','As modificações foram salvas')
             colocaLog(infoUser[0],infoUser[2],infoUser[1],acao)
         elif opcao == 2:
             excluirAluno(codigo,nome,turma,turno,ano,cpf,dictAlunos)
             acao = 'EXCLUIU ALUNO(A) ('+ codigo +')' 
+            messagebox.showinfo('','Aluno excluído do sistema.')
             colocaLog(infoUser[0],infoUser[2],infoUser[1],acao)
             limpa()
         boxAlunos.delete(0,END)
@@ -414,10 +416,12 @@ def ponte2(inCpfUser,inNomeUser,inLevel,dictUsers,opcao):
         if opcao == 1:
             salvarModificacoesUser(cpf,nome,level,dictUsers)
             acao = 'MODIFICOU INFORMAÇÕES DO USUÁRIO(A) ('+ cpf +')' 
+            messagebox.showinfo('','As modificações foram salvas')
             colocaLog(infoUser[0],infoUser[2],infoUser[1],acao)
         elif opcao == 2:
             excluirUser(cpf,nome,level,dictUsers)
             acao = 'EXCLUIU USUÁRIO(A) ('+ cpf +')' 
+            messagebox.showinfo('','Usuário excluído do sistema!')
             colocaLog(infoUser[0],infoUser[2],infoUser[1],acao)
             limpa2()
         boxAlunos.delete(0,END)
