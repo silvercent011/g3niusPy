@@ -117,6 +117,15 @@ def pesquisaAluno(login,nivel,usuario,dictAlunos,janelaPai,janelaFechar, funcaoF
         btFAno = ttk.Button(filtros,text='Filtrar por ano',compound=TOP,image=imageAno,command=partial(organizaAlunosAno,boxAlunos,dictAlunos))
         btFAno.grid(row=0,column=3,ipady=altura)
         btFAno.image = imageAno
+        
+        global campoBusca
+        campoBusca = ttk.Entry(filtros,font=fonteTopo2)
+        campoBusca.grid(row=0,column=4,columnspan=2,sticky=W+E)
+
+        imagePesquisa = ImageTk.PhotoImage(Image.open('./icons/30/Calendar30px.png'))
+        btPesquisa = ttk.Button(filtros,text='Buscar',compound=TOP,image=imagePesquisa,command=partial(buscaTexto,dictAlunos))
+        btPesquisa.grid(row=0,column=6,ipady=altura)
+        btPesquisa.image = imagePesquisa
 
     #Suporte2
     suporte2 = ttk.Label(frameGeral,text='')
@@ -293,7 +302,10 @@ def pesquisaAluno(login,nivel,usuario,dictAlunos,janelaPai,janelaFechar, funcaoF
     suporte4 = ttk.Label(frameGeral,text='')
     suporte4.grid(row=9,column=0,sticky=W+E)
     suporte4['style'] = 'branco.TLabel'
-    
+
+def buscaTexto(dictAlunos):
+    string = campoBusca.get()
+    encontraSubstring(boxAlunos,dictAlunos,string)  
 def carregaParaEdicao(evt):
     '''
     Carrega valores selecionados no listbox para a função colocaFrame

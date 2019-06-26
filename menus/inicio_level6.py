@@ -158,6 +158,7 @@ def menuLevel(login,usuario,level,dictAlunos,janelaPai):
     janelaPai['bg'] = 'white'
 
 def btVoltarCadastroA(login,usuario,level,dictAlunos,janelaPai,frameAtual):
+    
     frameAtual.destroy()
     menuLevel(login,usuario,level,dictAlunos,janelaPai)
 
